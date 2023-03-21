@@ -4,7 +4,8 @@
   */
 int _abs(int)
 {
-	int i = (i);
+	int i;
 
-	_putchar("%u\n", i);
+	_putchar(i);
+	_putchar('\n');
 }
