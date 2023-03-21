@@ -1,7 +1,8 @@
 #include "main.h"
 #include <stdlib.h>
 /**
-  * _abs(int) - Computes the absolute value of an integer.
+  * _abs(int) - Computes the absolute value of an integer
+  * Return: always 0 success.
   */
 int _abs(int)
 {
@@ -9,4 +10,5 @@ int _abs(int)
 
 	_putchar(i);
 	_putchar('\n');
+	return (0);
 }
