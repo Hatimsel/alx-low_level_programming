@@ -4,7 +4,7 @@
   */
 int _abs(int)
 {
-	int i = abs(i);
+	int i = (i);
 
 	_putchar("%d\n", i);
 }
