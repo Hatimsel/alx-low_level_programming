@@ -6,5 +6,5 @@ int _abs(int)
 {
 	int i = (i);
 
-	_putchar("%d\n", i);
+	_putchar("%u\n", i);
 }
