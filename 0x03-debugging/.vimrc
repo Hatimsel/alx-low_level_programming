@@ -1,0 +1,1 @@
+et pastetoggle=<F2>
