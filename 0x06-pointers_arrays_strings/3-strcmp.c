@@ -16,7 +16,6 @@ int _strcmp(char *s1, char *s2)
 	int result = 0;
 	int cpr;
 
-
 	while (s1[len_s])
 	{
 		len_s++;
@@ -46,9 +45,7 @@ int _strcmp(char *s1, char *s2)
 			result = s1[len] - s2[len];
 			break;
 		}
-
 		len++;
 	}
-
 	return (result);
 }
