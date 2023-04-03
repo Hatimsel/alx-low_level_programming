@@ -2,10 +2,14 @@
 
 /**
  * _memcpy - Entry point
- * @dest: input
- * @src: input
- * @n: input
- * Return: Always 0 (Success)
+ *
+ * @dest: destination
+ *
+ * @src: source memory address
+ *
+ * @n: number of bytes
+ *
+ * Return: Returns destination
  */
 
 
@@ -15,7 +19,7 @@ char *_memcpy(char *dest, char *src, unsigned int n)
 
 	for (i = 0; i < n; i++)
 	{
-		src[i] = dest[i];
+		dest[i] = src[i];
 	}
 	return (dest);
 }
