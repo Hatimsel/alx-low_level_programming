@@ -1,8 +1,17 @@
 #include "main.h"
 #include <stdio.h>
-/*#include <stdlib.h>*/
 
-int main(int argc, char* argv[])
+/**
+ * main - Entry point
+ *
+ * @argc: counts arguments
+ *
+ * @argv: array of arguments
+ *
+ * Return: always 0 (success)
+ */
+
+int main(int argc, char *argv[])
 {
 	int i = argc;
 
