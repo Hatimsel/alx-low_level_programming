@@ -13,12 +13,13 @@
 
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
-	void *clc = malloc(nmemb * size);
+	void *clc;
 
 	if (nmemb == 0 || size == 0)
 	{
 		return (NULL);
 	}
+	clc = malloc(nmemb * size);
 	if (clc == 0)
 	{
 		return (NULL);
