@@ -24,7 +24,15 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 		{
 		printf("%d ", num);
 		}
-		printf("%d %s", num, separator);
+		else if (i == 0)
+		{
+		printf("%d", num);
+		}
+		else
+		{
+		printf("%s%d", separator, num);
+		}
 	}
 	printf("\n");
+	va_end(args);
 }
