@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 
 	for (i = 0; i < a; i++)
 	{
-		opcode = *(unsigned char*)fptr;
+		opcode = *(unsigned *char)fptr;
 
 		printf("%02x ", opcode);
 
