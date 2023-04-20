@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 {
 	int i;
 	int a = 0;
-	void (*fptr)(void) = (void (*)(void)) &main;
+	int (*address)(int, char **) = main;
 	unsigned char opcode;
 
 	if (argc != 2)
@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 
 	for (i = 0; i < a; i++)
 	{
-		opcode = *(unsigned *char)fptr;
+		opcode = *(unsigned char *)address;
 
 		printf("%02x ", opcode);
 
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 		{
 			printf(" ");
 		}
-		fptr++;
+		address++;
 	}
 	printf("\n");
 	return (0);
