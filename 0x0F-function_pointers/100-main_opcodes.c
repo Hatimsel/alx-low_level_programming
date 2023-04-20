@@ -14,6 +14,8 @@ int main(int argc, char *argv[])
 {
 	int i;
 	int a = 0;
+	void (*fptr)(void) = (void (*)(void)) &main;
+	unsigned char opcode;
 
 	if (argc != 2)
 	{
@@ -28,14 +30,17 @@ int main(int argc, char *argv[])
 		exit(2);
 	}
 
-	void (*fptr)(void);
-
-	fptr = (void (*)(void)) &main;
-	char *p = (char *) fptr;
-
 	for (i = 0; i < a; i++)
 	{
-		printf("%02x ", p[i] & 0xff);
+		opcode = *(unsigned char*)fptr;
+
+		printf("%02x ", opcode);
+
+		if (i != a - 1)
+		{
+			printf(" ");
+		}
+		fptr++;
 	}
 	printf("\n");
 	return (0);
