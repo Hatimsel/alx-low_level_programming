@@ -1,4 +1,4 @@
-#include "man.h"
+#include "main.h"
 
 /**
 * get_bit - gets the value of a given index
