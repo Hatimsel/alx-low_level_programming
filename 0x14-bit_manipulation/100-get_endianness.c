@@ -8,11 +8,15 @@
 
 int get_endianness(void)
 {
-	union
-	{
-		uint32_t i;
-		char c[4];
-	} endian_test = {1};
+	unsigned int i = 1;
+	char *c = (char *)&i;
 
-	return (endian_test.c[0]);
+	if (*c)
+	{
+	return (1);
+	}
+	else
+	{
+	return (0);
+	}
 }
