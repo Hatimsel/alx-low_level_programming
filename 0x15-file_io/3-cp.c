@@ -3,46 +3,62 @@
 #define BUFFER_SIZE 1024
 
 /**
- * main - Copies the content of a file to another file
- * @argc: Argument count
- * @argv: Argument vector
- *
- * Return: 0 on success, 97-100 on failure
+ * error_handler - prints an error message to stderr and exits with the
+ * corresponding error code.
+ * @error_code: the error code.
+ * @msg: the error message to print.
  */
+
+void error_handler(int error_code, char *msg)
+{
+	dprintf(STDERR_FILENO, "%s\n", msg);
+	exit(error_code);
+}
+
+/**
+ * main - copies the content of a file to another file.
+ * @argc: the number of arguments passed to the program.
+ * @argv: an array of strings containing the program arguments.
+ *
+ * Return: Always 0.
+ */
+
 int main(int argc, char **argv)
 {
-	int fd_from, fd_to, nrd, nwr;
+	int fd_from, fd_to, bytes_read, bytes_written;
 	char buffer[BUFFER_SIZE];
+	struct stat st;
+	mode_t perms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 
 	if (argc != 3)
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
+		error_handler(97, "Usage: cp file_from file_to");
 
 	fd_from = open(argv[1], O_RDONLY);
 	if (fd_from == -1)
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]),
-			exit(98);
+		error_handler(98, "Error: Can't read from file");
 
-	fd_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	if (fstat(fd_from, &st) == -1)
+		error_handler(98, "Error: Can't read from file");
+
+	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, perms);
 	if (fd_to == -1)
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
+		error_handler(99, "Error: Can't write to file");
 
-	do {
-		nrd = read(fd_from, buffer, BUFFER_SIZE);
-		if (nrd == -1)
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]),
-				exit(98);
+	while ((bytes_read = read(fd_from, buffer, BUFFER_SIZE)) > 0)
+	{
+	bytes_written = write(fd_to, buffer, bytes_read);
+	if (bytes_written != bytes_read)
+		error_handler(99, "Error: Can't write to file");
+	}
 
-		nwr = write(fd_to, buffer, nrd);
-		if (nwr == -1)
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
-
-	} while (nrd == BUFFER_SIZE);
+	if (bytes_read == -1)
+		error_handler(98, "Error: Can't read from file");
 
 	if (close(fd_from) == -1)
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from), exit(100);
+		error_handler(100, "Error: Can't close fd");
 
 	if (close(fd_to) == -1)
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to), exit(100);
+		error_handler(100, "Error: Can't close fd");
 
 	return (0);
 }
