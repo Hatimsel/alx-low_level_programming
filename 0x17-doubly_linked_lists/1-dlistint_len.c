@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
-* slistint_len - list length
+* dlistint_len - list length
 *
 * @h: a pointer to the head of  alinked list
 * Return: returns the number of elements
