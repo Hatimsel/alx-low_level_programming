@@ -1,7 +1,7 @@
 #include "hash_tables.h"
 
 /**
- * hash_table)set - adds an element to the hash table.
+ * hash_table_set - adds an element to the hash table.
  *
  * @ht: a pointer to the hash table
  * @key: the new key to be inserted
@@ -38,8 +38,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	else
 	{
 		curr = ht->array[i];
-		/* while (curr->next != NULL) */
-		/* 	curr = curr->next; */
 		new->next = curr;
 		ht->array[i] = new;
 	}
