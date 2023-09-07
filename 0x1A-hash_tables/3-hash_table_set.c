@@ -24,7 +24,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 
 	new_node->key = strdup(key);
-	new_node->value = strdup(value);
+	if (strlen(value) > 0 && value != NULL)
+		new_node->value = strdup(value);
+	else
+		new_node->value = strdup("");
 	new_node->next = NULL;
 
 	if (ht->array[index] == NULL)
