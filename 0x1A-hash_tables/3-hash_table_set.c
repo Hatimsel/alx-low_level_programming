@@ -29,11 +29,15 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		ht->array[index] = new_node;
 	}
 
+	else
+	{
 	head = ht->array[index];
-	while (head->next)
+	while (head->next != NULL)
+	{
 		head = head->next;
-
+	}
 	head->next = new_node;
+	}
 
 	return (1);
 }
