@@ -8,7 +8,7 @@ all: $(OBJ) m.h
 	$(CC) $(OBJ) -o $(NAME)
 
 $(RM):
-	rm -f *~ *.swp $(NAME)
+	rm -f *~ $(NAME)
 
 o$(RM):
 	rm -f $(OBJ)
