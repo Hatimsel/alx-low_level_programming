@@ -8,10 +8,10 @@ all: $(OBJ) m.h
 	$(CC) $(OBJ) -o $(NAME)
 
 clean:
-	rm -rf *~ *.swp $(NAME)
+	rm -f *~ $(NAME)
 
 oclean:
-	rm -rf *.o
+	rm -f $(OBJ)
 
 fclean: clean oclean
 
